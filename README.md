@@ -1,6 +1,6 @@
 # PetHub - API Veterinária 🐾
 
-O **PetHub** é uma solução backend (API RESTful) desenvolvida em **Java (Spring Boot 3.4+)** projetada para centralizar o ecossistema de clínicas veterinárias, tutores, pets, agendamentos de consultas, diagnósticos e integrações com dispositivos wearable (IoT) para monitoramento em tempo real da saúde dos pets.
+O **PetHub** é uma solução desenvolvida em **Java (Spring Boot 3.4+) e C#(.NET)** (para a matéria de “DEVOPS TOOLS & CLOUD COMPUTING“, apresentaremos apenas a API Java) projetada para centralizar o ecossistema de clínicas veterinárias, tutores, pets, agendamentos de consultas e diagnósticos.
 
 Este repositório também foi **conteinerizado e estruturado** para atender aos requisitos da disciplina **DevOps Tools & Cloud Computing**.
 
@@ -10,10 +10,13 @@ Este repositório também foi **conteinerizado e estruturado** para atender aos 
 
 | RM | Nome Completo | Turma |
 |:---:|:---|:---:|
-| RMXXXXXX | [Insira seu Nome Aqui] | [Insira sua Turma Aqui] |
-| RMXXXXXX | [Insira o Nome Aqui] | [Insira sua Turma Aqui] |
+| RM561489 | Ana Flavia Camelo | 2TDSPV |
+| RM562745 | Gustavo Kenji Terada | 2TDSPV |
+| RM566234 | João Guilherme Carvalho Novaes | 2TDSPV |
+| RM565154 | Pedro Chasci Puga | 2TDSPV |
+| RM561342 |Lucas Figueiredo Vieira | 2TDSPV |
 
-- **Link para o Repositório GitHub**: [Cole o link aqui]
+- **Link para o Repositório GitHub**: https://github.com/vitalis-sa/challenge1sem2026-devops
 - **Link para o Vídeo no YouTube**: [Cole o link aqui]
 
 ---
@@ -21,10 +24,8 @@ Este repositório também foi **conteinerizado e estruturado** para atender aos 
 ## 🚀 Benefícios para o Negócio
 
 1. **Centralização do Histórico Clínico**: Facilita o acesso rápido e unificado aos registros de saúde do pet, evitando perda de informações entre diferentes clínicas e veterinários.
-2. **Prevenção e Monitoramento (IoT)**: Com a leitura de dados de wearables, os veterinários podem acompanhar métricas vitais de forma contínua, permitindo ações preventivas mais precisas.
-3. **Escalabilidade em Nuvem**: A arquitetura provisionada em nuvem permite que o negócio escale rapidamente conforme o aumento da base de tutores e pets.
-4. **Resiliência e Portabilidade**: O uso de containers Docker garante que a aplicação execute de forma idêntica tanto no ambiente local do desenvolvedor quanto no servidor de produção, minimizando falhas de deploy.
-
+2. **Assistente de IA**: Nas tele consultas que serão possíveis de serem realizadas pelo nosso app, teremos um assistente que escutará a chamada e identificará sintomas, gerando um diagnóstico prévio.
+3. **Notificações**: Implementaremos um sistema de notificações para notificar os tutores via Whatsapp sobre as consultas agendadas, lembretes de vacinas e tratamentos, e alertas sobre a saúde de seus pets.
 ---
 
 ## 🏗️ Arquitetura Macro da Solução (Nuvem)
