@@ -10,7 +10,7 @@ services:
       - oracle-data:/opt/oracle/oradata
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "echo 'SELECT 1 FROM DUAL;' | sqlplus -S system/$${ORACLE_PWD}@localhost:1521/XEPDB1 > /dev/null || exit 1"]
+      test: ["CMD-SHELL", "echo 'SELECT 1 FROM DUAL;' | sqlplus -S system/$${ORACLE_PASSWORD}@localhost:1521/XEPDB1 > /dev/null || exit 1"]
       interval: 10s
       timeout: 10s
       retries: 5
