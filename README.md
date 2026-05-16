@@ -46,8 +46,8 @@ O projeto foi totalmente configurado para subir através do **Docker Compose**. 
 
 1. **Clone este repositório:**
    ```bash
-   git clone https://github.com/SEU_USUARIO/pethub-java.git
-   cd pethub-java
+   git clone https://github.com/vitalis-sa/challenge1sem2026-devops.git
+   cd challenge1sem2026-devops
    ```
 
 2. **Configure as Variáveis de Ambiente:**
@@ -74,9 +74,6 @@ O projeto foi totalmente configurado para subir através do **Docker Compose**. 
 
 > [!TIP]
 > **Teste pela Nuvem:** Se você provisionou o ambiente na Azure utilizando o nosso script `provision_azure.sh`, a porta 8080 já está aberta no NSG. Você pode testar e fazer requisições (Curl, Postman, Insomnia ou via Swagger) utilizando diretamente o IP Público da sua Máquina Virtual, demonstrando o funcionamento real em Cloud!
-
-> [!IMPORTANT]
-> **Atenção (Requisito 2 Inserts):** Para o vídeo de entrega, utilize ferramentas como Postman, Insomnia ou o próprio painel interativo do Swagger para **inserir pelo menos 2 registros**. Faça um `GET` em seguida para comprovar a persistência no banco de dados.
 
 ---
 
