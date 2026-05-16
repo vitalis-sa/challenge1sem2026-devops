@@ -30,12 +30,9 @@ Este repositório também foi **conteinerizado e estruturado** para atender aos 
 
 ## 🏗️ Arquitetura Macro da Solução (Nuvem)
 
-Abaixo está o diagrama macro representando a infraestrutura do PetHub quando implantada na Nuvem (Azure), de acordo com os requisitos de DevOps.
+Abaixo está o diagrama macro representando a infraestrutura do PetHub:
 
-![Desenho da Arquitetura Macro](./ARQUITETURA_PLACEHOLDER.jpeg)
-*(Substitua o arquivo ARQUITETURA_PLACEHOLDER.jpeg na pasta raiz pelo print final do seu diagrama feito no Draw.io ou Visual Paradigm).*
-
----
+<img width="772" height="1412" alt="Prototype VITALIS-devops" src="https://github.com/user-attachments/assets/e9c60aa2-bcd0-46d6-8fac-7129f0029638" />
 
 ## 💻 Instalação da Solução (How-to)
 
