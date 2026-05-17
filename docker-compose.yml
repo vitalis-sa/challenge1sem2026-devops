@@ -1,6 +1,6 @@
 services:
   oracle-db:
-    image: gvenzl/oracle-xe:latest
+    image: gvenzl/oracle-xe:21-xe
     container_name: oracle-db
     environment:
       ORACLE_PASSWORD: ${ORACLE_PWD}

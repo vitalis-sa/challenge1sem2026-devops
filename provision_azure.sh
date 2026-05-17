@@ -9,9 +9,9 @@ set -euo pipefail
 # -----------------------------
 # Variáveis de configuração
 # -----------------------------
-RESOURCE_GROUP="rg-fiap-devops"
+RESOURCE_GROUP="rg-fiap-devops-challange3sem2026"
 LOCATION="canadacentral"
-VM_NAME="vm-fiap-devops-java-oracle"
+VM_NAME="vm-fiap-devops-java-oracle-challange3sem2026"
 VM_SIZE="Standard_B2ls_v2"
 ADMIN_USER="azureuser"
 IMAGE="Ubuntu2204"
