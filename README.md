@@ -17,7 +17,7 @@ Este repositório também foi **conteinerizado e estruturado** para atender aos 
 | RM561342 |Lucas Figueiredo Vieira | 2TDSPV |
 
 - **Link para o Repositório GitHub**: https://github.com/vitalis-sa/challenge1sem2026-devops
-- **Link para o Vídeo no YouTube**: [Cole o link aqui]
+- **Link para o Vídeo no YouTube**: https://www.youtube.com/watch?v=N18_M9Ll8lE
 
 ---
 
