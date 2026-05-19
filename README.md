@@ -93,15 +93,118 @@ O sistema PetHub conta com um vasto conjunto de rotas para gerenciamento do ecos
 
 Abaixo está o mapeamento dos Controllers disponíveis na aplicação. Para verificar os campos exatos (JSON) necessários para cada operação, acesse o **Swagger-UI** da aplicação em execução.
 
-| Entidade | Base Path (Endpoint) | Métodos Disponíveis |
-|---|---|---|
-| **Pets** | `/api/pets` | `GET`, `GET /{id}`, `GET /tutor`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Tutores** | `/api/tutores` | `GET`, `GET /{id}`, `GET /buscar`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Veterinários** | `/api/veterinarios` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Unidades Veterinárias** | `/api/unidades` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Consultas** | `/api/consultas` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Diagnósticos** | `/api/diagnosticos` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Exames** | `/api/exames` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Pedidos Médicos** | `/api/pedidos-medicos` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Vacinas e Tratamentos** | `/api/vacinas-tratamentos` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
-| **Leituras Wearable (IoT)** | `/api/leituras-wearable` | `GET`, `GET /{id}`, `POST`, `DELETE /{id}` |
+Aqui está o resumo completo dos endpoints em markdown. Mantive bastante coluna — é só remover o que não usar.
+
+### 🐾 Pets — `/api/pets`
+**Tag:** Pets — Gerenciamento de pets
+
+| Método | Path | Resumo | Descrição | Query Params | Path Params | Body | Respostas |
+|---|---|---|---|---|---|---|---|
+| GET | `/api/pets` | Listar pets | Lista paginada, filtrável por nome ou veterinário responsável | `nome?` (String), `veterinarioId?` (Long), `Pageable` | — | — | 200 |
+| GET | `/api/pets/tutor` | Listar pets por CPF do tutor | — | `cpf` (String, req), `Pageable` | — | — | 200, 404 (Tutor) |
+| GET | `/api/pets/{id}` | Buscar pet por ID | — | — | `id` (Long) | — | 200, 404 |
+| POST | `/api/pets` | Cadastrar pet | Busca tutor pelo CPF e vincula ao pet | — | — | `PetRequest` | 201, 400, 404 (Tutor/Vet) |
+| PUT | `/api/pets/{id}` | Atualizar pet | — | — | `id` | `PetRequest` | 200, 404 |
+| DELETE | `/api/pets/{id}` | Remover pet | — | — | `id` | — | 204, 404 |
+
+---
+
+### 👨‍⚕️ Veterinários — `/api/veterinarios`
+**Tag:** Veterinários — Gerenciamento de veterinários
+
+| Método | Path | Resumo | Descrição | Query Params | Path Params | Body | Respostas |
+|---|---|---|---|---|---|---|---|
+| GET | `/api/veterinarios` | Listar veterinários | Paginada, filtrável por nome ou ativo | `nome?`, `ativo?` (Boolean), `Pageable` | — | — | 200, 400 |
+| GET | `/api/veterinarios/{id}` | Buscar veterinário por ID | — | — | `id` | — | 200, 404 |
+| POST | `/api/veterinarios` | Cadastrar veterinário | — | — | — | `VeterinarioRequest` | 201, 400, 409 (CRMV/email duplicado) |
+| PUT | `/api/veterinarios/{id}` | Atualizar veterinário | — | — | `id` | `VeterinarioRequest` | 200, 404 |
+| DELETE | `/api/veterinarios/{id}` | Remover veterinário | — | — | `id` | — | 204, 404 |
+
+---
+
+### 🏥 Unidades Veterinárias — `/api/unidades`
+**Tag:** Unidades Veterinárias — Gerenciamento de clínicas e estabelecimentos
+
+| Método | Path | Resumo | Descrição | Query Params | Path Params | Body | Respostas |
+|---|---|---|---|---|---|---|---|
+| GET | `/api/unidades` | Listar unidades | Paginada, filtrável por veterinário | `veterinarioId?`, `Pageable` | — | — | 200 |
+| GET | `/api/unidades/{id}` | Buscar unidade por ID | — | — | `id` | — | 200, 404 |
+| POST | `/api/unidades` | Cadastrar unidade | — | — | — | `UnidadeVeterinarioRequest` | 201, 400, 404 (Vet) |
+| PUT | `/api/unidades/{id}` | Atualizar unidade | — | — | `id` | `UnidadeVeterinarioRequest` | 200, 404 |
+| DELETE | `/api/unidades/{id}` | Remover unidade | — | — | `id` | — | 204, 404 |
+
+---
+
+### 👤 Tutores — `/api/tutores`
+**Tag:** Tutores — Somente leitura (dados gerenciados pelo backend C#)
+
+| Método | Path | Resumo | Descrição | Query Params | Body | Respostas |
+|---|---|---|---|---|---|---|
+| GET | `/api/tutores/buscar` | Buscar tutor por CPF | Retorna dados básicos para vinculação de pets | `cpf` (String, req, @NotBlank) | — | 200, 404 |
+
+---
+
+### 📅 Consultas — `/api/consultas`
+**Tag:** Consultas — Gerenciamento de consultas veterinárias
+
+| Método | Path | Resumo | Descrição | Query Params | Path Params | Body | Respostas |
+|---|---|---|---|---|---|---|---|
+| GET | `/api/consultas` | Listar consultas | Filtrável por petId, veterinarioId e status | `petId?`, `veterinarioId?`, `status?` (`StatusConsulta`), `Pageable` | — | — | 200 |
+| GET | `/api/consultas/{id}` | Buscar consulta por ID | — | — | `id` | — | 200, 404 |
+| POST | `/api/consultas` | Criar consulta | Cria e notifica o tutor via API C# | — | — | `ConsultaRequest` | 201, 400, 404 (Pet/Vet/Unidade) |
+| PUT | `/api/consultas/{id}` | Atualizar consulta | — | — | `id` | `ConsultaRequest` | 200, 404 |
+| DELETE | `/api/consultas/{id}` | Remover consulta | — | — | `id` | — | 204, 404 |
+
+---
+
+### 🩺 Diagnósticos — `/api/diagnosticos`
+**Tag:** Diagnósticos — Gerados pelo veterinário durante a consulta
+
+| Método | Path | Resumo | Descrição | Query Params | Path Params | Body | Respostas |
+|---|---|---|---|---|---|---|---|
+| GET | `/api/diagnosticos` | Listar diagnósticos | Filtrável por petId ou consultaId | `petId?`, `consultaId?`, `Pageable` | — | — | 200 |
+| GET | `/api/diagnosticos/{id}` | Buscar diagnóstico por ID | — | — | `id` | — | 200, 404 |
+| POST | `/api/diagnosticos` | Registrar diagnóstico | Vinculado a consulta. Campos ML/GenAI preenchidos pelo assistente de IA | — | — | `DiagnosticoRequest` | 201, 400, 404 |
+| PUT | `/api/diagnosticos/{id}` | Atualizar diagnóstico | — | — | `id` | `DiagnosticoRequest` | 200, 404 |
+| DELETE | `/api/diagnosticos/{id}` | Remover diagnóstico | — | — | `id` | — | 204, 404 |
+
+---
+
+### 🧪 Exames — `/api/exames`
+**Tag:** Exames — Gerenciamento de exames clínicos
+
+| Método | Path | Resumo | Descrição | Query Params | Path Params | Body | Respostas |
+|---|---|---|---|---|---|---|---|
+| GET | `/api/exames` | Listar exames | Filtrável por petId ou consultaId | `petId?`, `consultaId?`, `Pageable` | — | — | 200 |
+| GET | `/api/exames/{id}` | Buscar exame por ID | — | — | `id` | — | 200, 404 |
+| POST | `/api/exames` | Registrar exame | — | — | — | `ExameRequest` | 201, 400, 404 (Consulta/Pet) |
+| PUT | `/api/exames/{id}` | Atualizar exame | — | — | `id` | `ExameRequest` | 200, 404 |
+| DELETE | `/api/exames/{id}` | Remover exame | — | — | `id` | — | 204, 404 |
+
+---
+
+### 💉 Vacinas e Tratamentos — `/api/vacinas-tratamentos`
+**Tag:** Vacinas e Tratamentos — Vacinas, medicamentos e procedimentos
+
+| Método | Path | Resumo | Descrição | Query Params | Path Params | Body | Respostas |
+|---|---|---|---|---|---|---|---|
+| GET | `/api/vacinas-tratamentos` | Listar vacinas/tratamentos | Filtrável por petId e tipo | `petId?`, `tipo?` (`TipoVacinaTratamento`), `Pageable` | — | — | 200 |
+| GET | `/api/vacinas-tratamentos/{id}` | Buscar por ID | — | — | `id` | — | 200, 404 |
+| POST | `/api/vacinas-tratamentos` | Registrar vacina/tratamento | Se `proximaDose` preenchida, notifica tutor via API C# | — | — | `VacinaTratamentoRequest` | 201, 400, 404 (Pet/Vet/Consulta) |
+| PUT | `/api/vacinas-tratamentos/{id}` | Atualizar | — | — | `id` | `VacinaTratamentoRequest` | 200, 404 |
+| DELETE | `/api/vacinas-tratamentos/{id}` | Remover | — | — | `id` | — | 204, 404 |
+
+---
+
+### 📋 Pedidos Médicos — `/api/pedidos-medicos`
+**Tag:** Pedidos Médicos — Exames solicitados e medicações para execução em casa
+
+| Método | Path | Resumo | Descrição | Query Params | Path Params | Body | Respostas |
+|---|---|---|---|---|---|---|---|
+| GET | `/api/pedidos-medicos` | Listar pedidos médicos | Filtrável por petId, status, tipo. Consumido pelo app via C# | `petId?`, `status?` (`StatusPedidoMedico`), `tipo?` (`TipoPedidoMedico`), `Pageable` | — | — | 200 |
+| GET | `/api/pedidos-medicos/{id}` | Buscar pedido por ID | — | — | `id` | — | 200, 404 |
+| POST | `/api/pedidos-medicos` | Criar pedido médico | Notifica tutor via API C# com lembrete (EXAME ou MEDICAMENTO) | — | — | `PedidoMedicoRequest` | 201, 400, 404 (Consulta/Pet) |
+| PUT | `/api/pedidos-medicos/{id}` | Atualizar pedido | — | — | `id` | `PedidoMedicoRequest` | 200, 404 |
+| DELETE | `/api/pedidos-medicos/{id}` | Remover pedido | — | — | `id` | — | 204, 404 |
+
+---
