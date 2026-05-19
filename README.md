@@ -32,7 +32,7 @@ Este repositório também foi **conteinerizado e estruturado** para atender aos 
 
 Abaixo está o diagrama macro representando a infraestrutura do PetHub:
 
-<img width="772" height="1412" alt="Prototype VITALIS-devops" src="https://github.com/user-attachments/assets/e9c60aa2-bcd0-46d6-8fac-7129f0029638" />
+<img width="1482" height="981" alt="Prototype VITALIS-temp-arquitetura" src="https://github.com/user-attachments/assets/1aefb809-c3ef-43cd-8f44-0a59b1d1a248" />
 
 ## 💻 Instalação da Solução (How-to)
 
