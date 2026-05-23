@@ -21,6 +21,21 @@ Este repositório também foi **conteinerizado e estruturado** para atender aos 
 
 ---
 
+## 📝 Descrição do Projeto
+
+O **PetHub** é um ecossistema digital integrado projetado para revolucionar a gestão de cuidados veterinários, conectando de forma inteligente clínicas, veterinários, tutores e os próprios pets. O coração dessa arquitetura é uma API robusta desenvolvida em **Spring Boot 3.4+**, que interage com uma base de dados relacional **Oracle Database** para centralizar informações clínicas críticas e automatizar rotinas operacionais e preventivas.
+
+O sistema destaca-se pelas seguintes capacidades e domínios de negócio:
+
+* **Prontuário e Histórico Clínico Unificado**: Gerenciamento completo de **Pets** (identificação, espécie, raça, idade e peso), **Tutores** (vinculados e integrados com microsserviços legados) e **Veterinários** (perfis profissionais com controle de CRMV e especialidades).
+* **Gestão de Atendimento e Consultas**: Agendamento completo de consultas médicas integrando fluxos de notificação ativa para os tutores sobre datas e preparações necessárias.
+* **Diagnósticos Clínicos e Inteligência Artificial**: Cadastro detalhado de consultas e diagnósticos clínicos. A API é estruturada para suportar modelos de Machine Learning e Inteligência Artificial Generativa, registrando sintomas específicos (como perda de apetite, tosse, alterações de temperatura e dificuldades respiratórias), gerando predições de patologias com níveis de confiança (`doenca_predita` e `confianca_predicao`) e armazenando análises clínicas detalhadas geradas por GenAI (`analise_gen_ai`).
+* **Medicina Preventiva e Lembretes (Vacinas e Tratamentos)**: Controle de aplicação de vacinas, medicamentos e procedimentos terapêuticos, monitorando a necessidade de doses futuras e integrando-se a canais de mensageria para alertar os tutores.
+* **Prescrições e Pedidos Médicos**: Registro centralizado de exames solicitados e medicamentos receitados para acompanhamento em domicílio.
+* **Monitoramento Contínuo via IoT (Wearables)**: A plataforma está preparada para receber telemetria contínua vinda de coleiras ou de outros dispositivos vestíveis (*wearables*). A API processa e armazena leituras de temperatura corporal e frequência cardíaca dos animais em tempo real, disparando alertas automáticos caso sejam detectadas anomalias nos sinais vitais.
+
+---
+
 ## 🚀 Benefícios para o Negócio
 
 1. **Centralização do Histórico Clínico**: Facilita o acesso rápido e unificado aos registros de saúde do pet, evitando perda de informações entre diferentes clínicas e veterinários.
